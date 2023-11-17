@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Signup</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/premium-photo/blurred-colorful-wallpaper-background_976742-179.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            background-image: url('https://img.freepik.com/premium-photo/blurred-colorful-wallpaper-background_976742-179.jpg');
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        h2 {
+            font-family: 'Impact';
+            line-height: 2.5;
+        }
+    </style>
+</head>
+<body>
+    <body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center">SIGNUP for E-Chanelling</h2>
+                {% if messages %}
+                <div class="alert alert-success">
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                 
+                <form class="form card" method="POST" action="{% url 'signup' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" class="form-control" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" class="form-control" placeholder="Enter a password" required>
+                        <small class="text-muted">Password should contain at least 8 characters.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password:</label>
+                        <input type="password" id="confirm-password" class="form-control" placeholder="Re-enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     <!--  JQuery  -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!--  Bootstrap tooltips  -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!--  Bootstrap core JavaScript  -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  
+<script>
+function validate(val) {
+v1 = document.getElementById("username");
+v3 = document.getElementById("email");
+v4 = document.getElementById("password");
+v5 = document.getElementById("password");
+
+
+flag1 = true;
+flag3 = true;
+flag4 = true;
+flag5 = true;
+
+if(val>=1 || val==0) {
+if(v1.value == "") {
+v1.style.borderColor = "red";
+flag1 = false;
+}
+else {
+v1.style.borderColor = "green";
+flag1 = true;
+}
+}
+
+
+if(val>=3 || val==0) {
+if(v3.value == "") {
+v3.style.borderColor = "red";
+flag3 = false;
+}
+else {
+v3.style.borderColor = "green";
+flag3 = true;
+}
+}
+if(val>=4 || val==0) {
+if(v4.value == "") {
+v4.style.borderColor = "red";
+flag4 = false;
+}
+else {
+v4.style.borderColor = "green";
+flag4 = true;
+}
+}
+if(val>=5 || val==0) {
+if(v5.value == "") {
+v5.style.borderColor = "red";
+flag5 = false;
+}
+else {
+v5.style.borderColor = "green";
+flag5 = true;
+}
+}
+
+
+flag = flag1 && flag3 && flag4 && flag5;
+
+return flag;
+}
+</script>
+
+</body>
+
+</html>
+</body>
+</html>

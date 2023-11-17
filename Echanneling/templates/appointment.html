@@ -1,0 +1,330 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Family Doctor: Get Appointment</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+  
+</head>
+
+<style>
+    .card {
+    padding: 30px 40px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+        border: none !important;
+        box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2)
+    }
+
+    .blue-text {
+        color: #00BCD4
+    }
+
+    .form-control-label {
+        margin-bottom: 0
+    }
+
+    input,
+    textarea,
+    button {
+        padding: 8px 15px;
+        border-radius: 5px !important;
+        margin: 5px 0px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        font-size: 18px !important;
+        font-weight: 300
+    }
+
+    input:focus,
+    textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #00BCD4;
+        outline-width: 0;
+        font-weight: 400
+    }
+
+    .btn-block {
+        text-transform: uppercase;
+        font-size: 15px !important;
+        font-weight: 400;
+        height: 43px;
+        cursor: pointer
+    }
+
+    .btn-block:hover {
+        color: #fff !important
+    }
+
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0
+    }
+
+</style>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+        <div class="container">
+          <a class="navbar-brand" style="color: black; font-weight: bolder; margin-left: -50px  ;" href="{% url 'home' %}"><img src="https://www.echannelling.com/images/logo-dark.png" alt="Small Mountain" width="300" height="50"> </a>
+          <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" style="color: black; padding-right: 15px; padding-left: 15px; font-weight: bold;"  href="#team">Our Team</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" style="color: black; padding-right: 15px; padding-left: 15px; font-weight: bold;" href="#services">Services</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" style="color: black; padding-right: 15px; padding-left: 15px; font-weight: bold;" href="#reviews">Testimonials</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" style="color: black; padding-right: 15px; padding-left: 15px; font-weight: bold;" href="#contact">Contact Us</a>
+              </li>
+
+              
+              
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                <h3>
+                    Book an appointment
+                </h3>
+                <p class="blue-text">Use the following form to contact us and request an appointment..</p>
+                
+                <div class="card">
+                    {% if messages %}
+			
+                    <div class="card notification-card notification-invitation">
+                        <div class="card-body">
+                            {% for message in messages %}
+                                <div class="card-title">{{message}} </div>
+                            {% endfor %}
+                        </div>
+                      </div> 
+                    {% endif %}     
+                    <form class="form-card" method="POST" action="{% url 'appointment' %}"  >
+                        {% csrf_token %}
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                            <label class="form-control-label px-3">First name<span class="text-danger"> *</span>
+                            </label> 
+                            <input required type="text" id="fname" name="fname" placeholder="Enter your first name" onblur="validate(1)"> 
+                        </div>
+
+                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                            <label class="form-control-label px-3">Last name<span class="text-danger"> *</span></label> 
+                            <input required type="text" id="lname" name="lname" placeholder="Enter your last name" onblur="validate(2)"> 
+                        </div>
+
+                        </div>
+
+                        <div class="row justify-content-between text-left">
+
+                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                                <label class="form-control-label px-3">Email<span class="text-danger"> *</span>
+                                </label> 
+                                <input type="text" id="email" name="email" placeholder="" onblur="validate(3)"> 
+                            </div>
+
+                            <div class="form-group col-sm-6 flex-column d-flex"> 
+                             <label class="form-control-label px-3">Phone number<span class="text-danger"> *</span></label> 
+                              <input type="text" id="mob" name="mobile" placeholder="" onblur="validate(4)"> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-30">
+                                  <input type="text" name="your_address" class="form-control" placeholder="Your Address">
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-30">
+                              <select name="Hospital" class="form-control">
+                                <option value="Hospital">Hospital</option>
+                                <option value="Durdans Hospital Colombo">Durdans Hospital Colombo</option>
+                                <option value="Asiri Central Hospital Norris Canal Road">Asiri Central Hospital Norris Canal Road</option>
+                                <option value="Prabhodha Hospital PVT Ampara">Prabhodha Hospital PVT Ampara</option>
+                                <option value="Navaloka Hospital Colombo">Navaloka Hospital Colombo</option>
+                                <option value="Asiri Hospital Colombo">Asiri Hospital Colombo</option>
+                                <option value="Asiri Hospital Kandy">Asiri Hospital Kandy</option>
+                                <option value="Hemas Hospital Wattala">Hemas Hospital Wattala</option>
+                                <option value="Royal Hospital Colombo">Royal Hospital Colombo</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group mb-30">
+                              <select name="your_schedule" class="form-control">
+                                <option value="Doctor Name">Doctor Name</option>
+                                <option value="DR A YOGANANDAMOORTHY">DR A YOGANANDAMOORTHY - CARDIOLOGIST</option>
+                                <option value="DR ASHA KUMARASIRI">DR ASHA KUMARASIRI - NEUROLOGIST</option>
+                                <option value="DR A WINDSOR PERERA">DR A WINDSOR PERERA - PAEDIATRICIAN</option>
+                                <option value="DR A K PRABHODANA RANAWEERA">DR A K PRABHODANA RANAWEERA - GYNAECOLOGIST</option>
+                                <option value="DR AJANTHA TIKIRI RAJAPAKSHA">DR AJANTHA TIKIRI RAJAPAKSHA - CARDIOLOGIST</option>
+                                <option value="DR A A A RIYAAZ">DR A.A.A. RIYAAZ - PHYSICIAN</option>
+                                <option value="	DR SRIDARAN">	DR . SRIDARAN - PHYSICIAN</option>
+                                <option value="DR. NORMAN CECIL">DR. NORMAN CECIL - NEUROLOGIST</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group mb-30">
+                              <select name="your_schedule" class="form-control">
+                                <option value="First Choice Appoinment Time">First Choice Appoinment Time</option>
+                                <option value="9 AM to 10 AM">9 AM to 10 AM</option>
+                                <option value="11 AM to 12 PM">11 AM to 12 PM</option>
+                                <option value="2 PM to 4 PM">2 PM to 4 PM</option>
+                                <option value="8 PM to 10 PM">8 PM to 10 PM</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group mb-30">
+                              <select name="your_date" class="form-control">
+                                <option value="Choose Your Date">Choose Your Date</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Friday">Saturday</option>
+                                <option value="Friday">Sunday</option>
+                              </select>
+                            </div>
+                          </div>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-12 flex-column d-flex"> 
+                                <label class="form-control-label px-3">Your request<span class="text-danger"> *</span></label> 
+                                <textarea type="text" id="ans" name="request" placeholder="" onblur="validate(6)"></textarea> 
+                            </div>
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">Send</button> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <!--  JQuery  -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!--  Bootstrap tooltips  -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!--  Bootstrap core JavaScript  -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  
+<script>
+function validate(val) {
+v1 = document.getElementById("fname");
+v2 = document.getElementById("lname");
+v3 = document.getElementById("email");
+v4 = document.getElementById("mob");
+v5 = document.getElementById("job");
+v6 = document.getElementById("ans");
+
+flag1 = true;
+flag2 = true;
+flag3 = true;
+flag4 = true;
+flag5 = true;
+flag6 = true;
+
+if(val>=1 || val==0) {
+if(v1.value == "") {
+v1.style.borderColor = "red";
+flag1 = false;
+}
+else {
+v1.style.borderColor = "green";
+flag1 = true;
+}
+}
+
+if(val>=2 || val==0) {
+if(v2.value == "") {
+v2.style.borderColor = "red";
+flag2 = false;
+}
+else {
+v2.style.borderColor = "green";
+flag2 = true;
+}
+}
+if(val>=3 || val==0) {
+if(v3.value == "") {
+v3.style.borderColor = "red";
+flag3 = false;
+}
+else {
+v3.style.borderColor = "green";
+flag3 = true;
+}
+}
+if(val>=4 || val==0) {
+if(v4.value == "") {
+v4.style.borderColor = "red";
+flag4 = false;
+}
+else {
+v4.style.borderColor = "green";
+flag4 = true;
+}
+}
+if(val>=5 || val==0) {
+if(v5.value == "") {
+v5.style.borderColor = "red";
+flag5 = false;
+}
+else {
+v5.style.borderColor = "green";
+flag5 = true;
+}
+}
+if(val>=6 || val==0) {
+if(v6.value == "") {
+v6.style.borderColor = "red";
+flag6 = false;
+}
+else {
+v6.style.borderColor = "green";
+flag6 = true;
+}
+}
+
+flag = flag1 && flag2 && flag3 && flag4 && flag5 && flag6;
+
+return flag;
+}
+</script>
+
+</body>
+
+</html>
