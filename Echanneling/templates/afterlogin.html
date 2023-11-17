@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% include 'header.html'%}
+
+
+<style>
+	h1 {
+        text-align: center;
+        color: #141313;
+        padding-top: 0.25cm;
+        padding-bottom: 0.5cm;
+        }
+	div{
+		text-align: center;
+		color: #141313;
+		margin-left: 5px;
+		margin-right: 5px;
+		margin-bottom: 10px;
+	}
+	.page-holder {
+  		min-height: 100vh;
+	}
+
+	.bg-cover {
+  		background-size: cover !important;
+	} 
+	.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 24px;
+  padding: 15px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  margin-top: 0.8cm;
+}
+.input{
+    width: 150px;
+    display: inline-block;
+}
+
+</style>
+<head>
+</head>
+<body>
+<div style = "background: url(https://images.ctfassets.net/qr8kennq1pom/2GXvmNnqnCSe2qKIUcuO86/8aa2f0b7d7a5852222ab3d9aea49d975/health_insurance.jpg?fm=webp&q=70&w=1366)" class="page-holder bg-cover">
+	
+  
+  <section class="book-an-oppointment-area section-padding-100 bg-img bg-gradient-overlay jarallax clearfix" style="background-image: url('#');">
+      <div class="container">
+        <div class="row">
+          <!-- Section Heading -->
+          <div class="col-12">
+            <div class="section-heading text-center white">
+              <h1>Book An Apointment</h1>
+              <div class="line"></div>
+            </div>
+          </div>
+        </div>
+      
+      <div class="row">
+        <div class="col-12">
+          <!-- Appointment Form -->
+          <div class="appointment-form">
+            <form action="{% url 'appointment' %}" method="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="text" name="your_name" class="form-control" placeholder="Your Name" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="text" name="your_phone" class="form-control" placeholder="Your Phone" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="email" name="your_email" class="form-control" placeholder="Your Email" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="text" name="your_address" class="form-control" placeholder="Your Address">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <select name="Hospital" class="form-control">
+                      <option value="Hospital">Hospital</option>
+                      <option value="Durdans Hospital Colombo">Durdans Hospital Colombo</option>
+                      <option value="Asiri Central Hospital Norris Canal Road">Asiri Central Hospital Norris Canal Road</option>
+                      <option value="Prabhodha Hospital PVT Ampara">Prabhodha Hospital PVT Ampara</option>
+                      <option value="Navaloka Hospital Colombo">Navaloka Hospital Colombo</option>
+                      <option value="Asiri Hospital Colombo">Asiri Hospital Colombo</option>
+                      <option value="Asiri Hospital Kandy">Asiri Hospital Kandy</option>
+                      <option value="Hemas Hospital Wattala">Hemas Hospital Wattala</option>
+                      <option value="Royal Hospital Colombo">Royal Hospital Colombo</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <select name="your_schedule" class="form-control">
+                      <option value="Doctor Name">Doctor Name</option>
+                      <option value="DR A YOGANANDAMOORTHY">DR A YOGANANDAMOORTHY - CARDIOLOGIST</option>
+                      <option value="DR ASHA KUMARASIRI">DR ASHA KUMARASIRI - NEUROLOGIST</option>
+                      <option value="DR A WINDSOR PERERA">DR A WINDSOR PERERA - PAEDIATRICIAN</option>
+                      <option value="DR A K PRABHODANA RANAWEERA">DR A K PRABHODANA RANAWEERA - GYNAECOLOGIST</option>
+                      <option value="DR AJANTHA TIKIRI RAJAPAKSHA">DR AJANTHA TIKIRI RAJAPAKSHA - CARDIOLOGIST</option>
+                      <option value="DR A A A RIYAAZ">DR A.A.A. RIYAAZ - PHYSICIAN</option>
+                      <option value="	DR SRIDARAN">	DR . SRIDARAN - PHYSICIAN</option>
+                      <option value="DR. NORMAN CECIL">DR. NORMAN CECIL - NEUROLOGIST</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <select name="your_schedule" class="form-control">
+                      <option value="First Choice Appoinment Time">First Choice Appoinment Time</option>
+                      <option value="9 AM to 10 AM">9 AM to 10 AM</option>
+                      <option value="11 AM to 12 PM">11 AM to 12 PM</option>
+                      <option value="2 PM to 4 PM">2 PM to 4 PM</option>
+                      <option value="8 PM to 10 PM">8 PM to 10 PM</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <select name="your_date" class="form-control">
+                      <option value="Choose Your Date">Choose Your Date</option>
+                      <option value="Monday">Monday</option>
+                      <option value="Tuesday">Tuesday</option>
+                      <option value="Wednesday">Wednesday</option>
+                      <option value="Thursday">Thursday</option>
+                      <option value="Friday">Friday</option>
+                      <option value="Friday">Saturday</option>
+                      <option value="Friday">Sunday</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-30">
+                    <textarea name="your_message" class="form-control" placeholder="Your Message"></textarea>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="button" style="vertical-align:middle">Book Now</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+  
+</body>
+  <!-- Book An Oppointment Area End -->
+  

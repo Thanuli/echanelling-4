@@ -1,0 +1,266 @@
+
+<html>
+  <title><h1>Our Doctors</h1></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!-- doctorlist.html -->
+<style>
+    h1 {
+        text-align: center;
+        color: #3a3939;
+        padding-top: 1cm;
+        padding-bottom: 0.25cm;
+        }
+    
+    h4 {
+        text-align: center;
+        color: #3a3939;
+        padding-bottom: 0.5cm;
+        }
+
+    h5 {
+        text-align: center;
+        color: #3a3939;
+        }
+
+    body{
+        
+        background-image: url('https://cdn.wallpapersafari.com/44/65/5ZLr7t.png');
+        }
+
+    ul{background-color: #F8F9FA;}
+
+    li {
+        margin-bottom: 30px;
+        }
+</style>
+
+<head>
+</head>
+
+<body>
+
+
+  
+<nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+    <div class="container">
+      <a class="navbar-brand" style="color: black; font-weight: bolder; margin-left: 20px; margin-top: 20px;" href="{% url 'home' %}"><img src="https://www.echannelling.com/images/logo-dark.png" alt="Small Mountain" width="300" height="50"> </a>
+    
+      {% if user.is_staff %}
+      <a style="color: black; font-weight: bolder; margin-left: 20px; margin-top: 20px;" href="{% url 'add_doctor_profile' %}">Add Doctor Profile</a>
+    {% endif %}
+
+    <!-- doctorlist.html -->
+
+    {% block content %}
+    <h1>Our Doctors</h1>
+
+    <div class="w3-container">
+        {% for doctor in doctors %}
+        <h4>{{ doctor.specialty }}</h4>
+
+        <ul class="w3-ul w3-card-4">
+            <li class="w3-bar">
+                {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                <a href="{% url 'remove_doctor' doctor.id %}"
+                    class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right">
+                    <h5>Remove</h5>
+                </a>
+                {% endif %}
+                {% endif %}
+                <img src="{{ doctor.image.url }}" class="w3-bar-item w3-circle w3-hide-small" style="width:150px">
+                <div class="w3-bar-item">
+                    <span class="w3-large">{{ doctor.name }}</span><br>
+                    <span>{{ doctor.specialty }}</span><br>
+                    <span>{{ doctor.hospital }}</span><br>
+                    <span>Available time</span><br>
+                    <span class="w3-small">{{ doctor.available_time }}</span><br>
+                </div>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+    {% endblock %}
+
+
+  <h4>CARDIOLOGISTS</h4>
+  
+  <ul class="w3-ul w3-card-4">
+    <li class="w3-bar">
+      {% if user.is_authenticated %}
+      <span class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><a href="{% url 'afterlogin' %}"><h5>Add Appointment</h5></a></span>
+      {% endif %}
+      {% if user.is_staff %}
+      <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><h5>X</h5></span>
+      {% endif %}
+
+      <img src="https://thumbs.dreamstime.com/z/indian-doctor-folder-21622841.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:150px">
+      <div class="w3-bar-item">
+        <span class="w3-large"> DR A YOGANANDAMOORTHY </span><br>
+        <span>CARDIOLOGIST</span><br>
+        <span>Durdans Hospital Colombo</span><br>
+        <span> Available time</span><br>
+        <span class="w3-small"> MON     - 9 AM to 10 AM | 8 PM to 10 PM<br> WED     - 9 AM to 10 AM | 8 PM to 10 PM</span><br>
+        
+      
+      </div>
+    </li>
+
+    <li class="w3-bar">
+        {% if user.is_authenticated %}
+        <span class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><a href="{% url 'afterlogin' %}"><h5>Add Appointment</h5></a></span>
+        {% endif %}
+        {% if user.is_staff %}
+        <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><h5>X</h5></span>
+        {% endif %}
+        <img src="https://thumbs.dreamstime.com/z/indian-doctor-mature-male-medical-standing-isolated-white-background-handsome-model-portrait-31871541.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:150px">
+        <div class="w3-bar-item">
+          <span class="w3-large"> DR AJANTHA TIKIRI RAJAPAKSHA </span><br>
+          <span>CARDIOLOGIST</span><br>
+          <span>Asiri Central Hospital Norris Canal Road<br>Durdans Hospital Colombo</span><br>
+          <span> Available time</span><br>
+          <span class="w3-small"> MON       - 9 AM to 10 AM | 2 PM to 4 PM | 8 PM to 10 PM<br> WED      - 9 AM to 10 AM <br>FRI     - 9 AM to 10 AM | 8 PM to 10 PM</span><br>
+  
+        </div>
+      </li>
+    </li>
+  </ul>
+</div>
+
+<div class="w3-container">
+    <h4>NEUROLOGIST</h4>
+    
+    <ul class="w3-ul w3-card-4">
+      <li class="w3-bar">
+        {% if user.is_authenticated %}
+        <span class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><a href="{% url 'afterlogin' %}"><h5>Add Appointment</h5></a></span>
+        {% endif %}
+        {% if user.is_staff %}
+        <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><h5>X</h5></span>
+        {% endif %}
+        <img src="https://thumbs.dreamstime.com/z/indian-doctor-woman-23462721.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:150px">
+        <div class="w3-bar-item">
+          <span class="w3-large"> DR ASHA KUMARASIRI </span><br>
+          <span>NEUROLOGIST</span><br>
+          <span>Prabhodha Hospital PVT Ampara</span><br>
+          <span> Available time</span><br>
+          <span class="w3-small"> WED       - 9 AM to 10 AM | 8 PM to 10 PM<br> TUE     - 9 AM to 10 AM | 8 PM to 10 PM<br> SAT     - 9 AM to 10 AM | 11 AM to 12 PM </span><br>
+  
+        </div>
+      </li>
+  
+      <li class="w3-bar">
+          {% if user.is_authenticated %}
+          <span class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><a href="{% url 'afterlogin' %}"><h5>Add Appointment</h5></a></span>
+          {% endif %}
+          {% if user.is_staff %}
+          <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><h5>X</h5></span>
+          {% endif %}
+          <img src="https://thumbs.dreamstime.com/z/asian-doctor-22229918.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:150px">
+          <div class="w3-bar-item">
+            <span class="w3-large"> DR NORMAN CECIL </span><br>
+            <span>NEUROLOGIST</span><br>
+            <span>Navaloka Hospital Colombo<br>Asiri Hospital Colombo</span><br>
+            <span> Available time</span><br>
+            <span class="w3-small"> MON     - 8 PM to 10 PM<br>FRI      - 8 PM to 10 PM<br>SUN       - 8 PM to 10 PM</span><br>
+    
+          </div>
+        </li>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="w3-container">
+    <h4>PHYSICIAN</h4>
+    
+    <ul class="w3-ul w3-card-4">
+      <li class="w3-bar">
+        {% if user.is_authenticated %}
+        <span class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><a href="{% url 'afterlogin' %}"><h5>Add Appointment</h5></a></span>
+        {% endif %}
+        {% if user.is_staff %}
+        <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><h5>X</h5></span>
+        {% endif %}
+        <img src="https://thumbs.dreamstime.com/z/indian-doctor-28013008.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:150px">
+        <div class="w3-bar-item">
+          <span class="w3-large"> DR SRIDARAN </span><br>
+          <span>PHYSICIAN</span><br>
+          <span>ASIRI HOSPITAL KANDY</span><br>
+          <span> Available time</span><br>
+          <span class="w3-small"> TUE       - 9 AM to 10 AM | 2 PM to 4 PM<br> FRI     - 2 AM to 4 AM | 8 PM to 10 PM<br> SAT     - 9 AM to 10 AM | 11 AM to 12 PM </span><br>
+  
+        </div>
+      </li>
+  
+      <li class="w3-bar">
+          {% if user.is_authenticated %}
+          <span class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><a href="{% url 'afterlogin' %}"><h5>Add Appointment</h5></a></span>
+          {% endif %}
+          {% if user.is_staff %}
+          <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><h5>X</h5></span>
+          {% endif %}
+          <img src="https://thumbs.dreamstime.com/z/indian-doctor-writing-prescription-21487235.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:150px">
+          <div class="w3-bar-item">
+            <span class="w3-large"> DR A.A.A. RIYAAZ </span><br>
+            <span>PHYSICIAN</span><br>
+            <span>Navaloka Hospital Colombo</span><br>
+            <span> Available time</span><br>
+            <span class="w3-small"> MON     - 8 PM to 10 PM<br>FRI      - 8 PM to 10 PM<br>SUN       - 8 PM to 10 PM</span><br>
+    
+          </div>
+        </li>
+      </li>
+    </ul>
+  </div>
+
+  <div class="w3-container">
+    <h4>GYNAECOLOGIST</h4>
+    
+    <ul class="w3-ul w3-card-4">
+      <li class="w3-bar">
+        {% if user.is_authenticated %}
+        <span class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><a href="{% url 'afterlogin' %}"><h5>Add Appointment</h5></a></span>
+        {% endif %}
+        {% if user.is_staff %}
+        <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><h5>X</h5></span>
+        {% endif %}
+        <img src="https://thumbs.dreamstime.com/z/confident-male-doctor-hands-pockets-full-length-portrait-standing-over-white-background-vertical-shot-39367511.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:150px">
+        <div class="w3-bar-item">
+          <span class="w3-large"> DR A K PRABHODANA RANAWEERA </span><br>
+          <span>GYNAECOLOGIST</span><br>
+          <span>HEMAS HOSPITAL WATTALA</span><br>
+          <span> Available time</span><br>
+          <span class="w3-small"> MON       - 9 AM to 10 AM | 2 PM to 4 PM<br> FRI     - 2 AM to 4 AM | 8 PM to 10 PM<br> SAT     - 9 AM to 10 AM | 11 AM to 12 PM </span><br>
+
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="w3-container">
+    <h4>PAEDIATRICIAN</h4>
+    
+    <ul class="w3-ul w3-card-4">
+      <li class="w3-bar">
+        {% if user.is_authenticated %}
+        <span class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><a href="{% url 'afterlogin' %}"><h5>Add Appointment</h5></a></span>
+        {% endif %}
+        {% if user.is_staff %}
+        <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-light-gray w3-xlarge w3-right"><h5>X</h5></span>
+        {% endif %}
+        <img src="https://thumbs.dreamstime.com/z/indian-doctor-22132672.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:150px">
+        <div class="w3-bar-item">
+          <span class="w3-large"> DR A WINDSOR PERERA </span><br>
+          <span>PAEDIATRICIAN</span><br>
+          <span>ROYAL HOSPITAL COLOMBO</span><br>
+          <span> Available time</span><br>
+          <span class="w3-small"> SAT       - 2 AM to 4 AM | 8 PM to 10 PM<br> SUN     - 11 AM to 12 PM | 2 PM to 4 PM<br> SAT     - 9 AM to 10 AM | 11 AM to 12 PM </span><br>
+          
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+from .models import Appointment
+from .models import SignUp
+
+def get_notification(request):
+    count = Appointment.objects.filter(accepted=False).count()
+    data = {
+        "count":count
+    }
+    return data
+
+
+def get_signup_notification(request):
+    count = SignUp.objects.filter(accepted=False).count()
+    data = {
+        "signup_count": count
+    }
+    return data
