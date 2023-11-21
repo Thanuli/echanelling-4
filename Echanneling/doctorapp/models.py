@@ -1,8 +1,8 @@
 from django.db import models
-from django.db import models
 from datetime import date
 from tokenize import Name
 from unittest.util import _MAX_LENGTH
+from django.contrib.auth.models import User
 
 class Appointment(models.Model):
     first_name = models.CharField(max_length=50)
@@ -52,9 +52,6 @@ class Patient(models.Model):
     Sex = models.CharField(max_length=10)
     Age = models.IntegerField()
     ContactNo = models.IntegerField(null=True)
-
-from django.db import models
-from django.contrib.auth.models import User
 
 class DoctorProfile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Link each profile to a user
