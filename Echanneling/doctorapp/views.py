@@ -17,7 +17,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, get_object_or_404
-from .models import DoctorProfile  # Import your DoctorProfile model
+from .models import DoctorProfile  
 from django.contrib.auth.decorators import login_required
 from .forms import DoctorProfileForm
 
