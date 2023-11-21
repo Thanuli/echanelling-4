@@ -11,29 +11,16 @@ import datetime
 from django.template import Context
 from django.template.loader import render_to_string, get_template
 from .forms import NewUserForm
-from django.shortcuts import render
-
 from re import U
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-
-from .forms import NewUserForm
-from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import redirect, get_object_or_404
+from .models import DoctorProfile  # Import your DoctorProfile model
+from django.contrib.auth.decorators import login_required
+from .forms import DoctorProfileForm
 
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.views.generic.base import TemplateView
-from django.core.mail import EmailMessage, message
-from django.conf import settings
-from django.contrib import messages
-from .models import Appointment
-from django.views.generic import ListView
-import datetime
-from django.template import Context
-from django.template.loader import render_to_string, get_template
 
 class HomeTemplateView(TemplateView):
     template_name = "index (1).html"
@@ -53,11 +40,6 @@ class HomeTemplateView(TemplateView):
         email.send()
         return HttpResponse("Email sent successfully!")
 
-
-
-
-
-from django.http import HttpResponseRedirect  # Import HttpResponseRedirect
 
 class AppointmentTemplateView(TemplateView):
     template_name = "appointment.html"
@@ -239,10 +221,6 @@ def doctorlist(request):
 def afterlogin(request):
     return render(request, 'afterlogin.html')
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from .forms import DoctorProfileForm
-
 @login_required
 def add_doctor_profile(request):
     if request.method == 'POST':
@@ -257,14 +235,9 @@ def add_doctor_profile(request):
 
     return render(request, 'doctorprofile.html', {'form': form})
 
-from .models import DoctorProfile  # Import the DoctorProfile model
-
 def doctorlist(request):
     doctors = DoctorProfile.objects.all()  # Fetch all doctor profiles
     return render(request, 'doctorlist.html', {'doctors': doctors})
-
-from django.shortcuts import redirect, get_object_or_404
-from .models import DoctorProfile  # Import your DoctorProfile model
 
 def remove_doctor(request, doctor_id):
     if request.user.is_staff:
